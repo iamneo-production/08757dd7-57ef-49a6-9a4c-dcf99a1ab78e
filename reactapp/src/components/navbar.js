@@ -33,6 +33,7 @@ const Navbar = () => {
               <li><NavLink className="navarc" to ="productpage1">Products</NavLink></li>
               <li><NavLink className="navarc" to ="contact">Contact</NavLink></li>
               <li><NavLink className="navarc" to ="login">Account</NavLink></li>
+              <li><NavLink className="navarc" to ="UserOrders">My Orders</NavLink></li>
               <li><NavLink className="navarc" to ="admin-login">Admin</NavLink></li>
               <li><NavLink className="navarc" id="logoutButton" to="logout">Log Out</NavLink></li>
             </ul>

@@ -8,6 +8,7 @@ import Productpage1 from "./components/ProductPage";
 import Cart from "./components/Cart";
 import "./index.css";
 import ProductDetails from "./components/productdetails"
+import UserOrders from "./components/Userorder";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
     <Route exact path='/productpage1' component={Productpage1}/>
     <Route exact path='/cart' component={Cart}/>
     <Route exact path='/productdetails' component={ProductDetails}/>
+    <Route exact path='/UserOrders' component={UserOrders}/>
     <Redirect to="/home"/>
     // <Route component={Error}/>
     </Switch>
