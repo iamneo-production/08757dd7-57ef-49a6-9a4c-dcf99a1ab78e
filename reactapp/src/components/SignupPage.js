@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import {Card, Form , Button, Col, Row, Alert} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import axios from "axios";
 
 class SignupPage extends Component{
-
     constructor(props){
         super(props);
         this.state = {
@@ -18,7 +18,7 @@ class SignupPage extends Component{
         };
     }
 
-
+    // API call
     createUser = (event) => {
         const User = {
             email: this.state.email,
@@ -32,11 +32,22 @@ class SignupPage extends Component{
             return;
         }
         else{
-            console.log(User);
-            this.setState({
-                show: true,
-                message: "Account Created Successfully!",
-                alertVariant: "success"
+            axios.post("https://8080-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/signup", User)
+            .then(response => {
+                if(response.data){
+                    this.setState({
+                        show: true,
+                        message: "Account created successfully, please login!",
+                        alertVariant: "success"
+                    });
+                }
+                else{
+                    this.setState({
+                        show: true,
+                        message: "Account already exists with this email, please login!",
+                        alertVariant: "warning"
+                    });
+                }
             });
         }
     }
@@ -65,7 +76,7 @@ class SignupPage extends Component{
         if(this.state.password !== this.state.confirmpassword){
             this.setState({
                 show: true,
-                message: "Password must be same",
+                message: "Retype same password",
                 alertVariant: "danger"
             });
             document.signupForm.password.focus();
@@ -144,4 +155,3 @@ class SignupPage extends Component{
 }
 
 export default SignupPage
-

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Card, Form , Button, Col, Row, Alert} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import axios from "axios";
 
 class LoginPage extends Component{
 
@@ -8,55 +9,83 @@ class LoginPage extends Component{
         super(props);
         this.state = {
             show: false,
-            message: null
+            message: "",
+            email: "",
+            password: "",
         };
     }
 
+    valueChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+    // API call
+    authenticateUser = (event) => {
+        const UserData = {
+            email: this.state.email,
+            password: this.state.password,
+        }
+        event.preventDefault();
+
+        if(!this.showAlert()){
+            return;
+        }
+        else{
+            axios.post("https://8080-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/login", UserData)
+            .then(response => {
+                if(response.data){
+                    this.setState({
+                        show: true,
+                        message: "Login successfull"
+                    });
+                }
+                else{
+                    this.setState({
+                        show: true,
+                        message: "Invalid email or password"
+                    });
+                }
+            });
+        }
+    }
+
     showAlert = () => {
-        var username = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-        
         // Null Check
-        if(username === ""){
+        if(this.state.email === ""){
             this.setState({
                 show: true,
                 message: "Email filed cannot be empty"
             });
             document.loginForm.email.focus();
-            return;
+            return false;
         }
-        else if(password === ""){
+        else if(this.state.password === ""){
             this.setState({
                 show: true,
                 message: "Password field cannot be empty"
             });
             document.loginForm.password.focus();
-            return;
-        }
-
-        // Admin Authentication
-        if(username === "admin" && password === "admin"){
-            this.setState({
-                show: true,
-                message: "Welcome Admin"
-            });
-            return;
+            return false;
         }
 
         // Email Validaition
         var mailformat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-        if(!username.match(mailformat))
-        {
+        if(!this.state.email.match(mailformat) && this.state.email !== "admin"){
             this.setState({
                 show: true,
                 message: "Enter valid email"
             });
             document.loginForm.email.focus();
-            return;
+            return false;
         }
+        return true;
     }
 
     render(){
+        const {email, password} = this.state;
+
         return(
             <div className="container mt-5 mb-5">
                 <Row>
@@ -73,18 +102,20 @@ class LoginPage extends Component{
                         <Card id="loginBox">
                             <Card.Header><b>LOGIN</b></Card.Header>
                             <Card.Body>
-                                <Form name="loginForm">
+                                <Form name="loginForm" onSubmit={this.authenticateUser}>
                                     <Form.Group className="mb-3" controlId="email">
                                         <Form.Label>Email address</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter email" required/>
+                                        <Form.Control type="text" placeholder="Enter email" name="email" 
+                                        onChange={this.valueChange} value={email} autoComplete="off" required/>
                                     </Form.Group>
 
                                     <Form.Group className="mb-3" controlId="password">
                                         <Form.Label>Password</Form.Label>
-                                        <Form.Control type="password" placeholder="Password" required/>
+                                        <Form.Control type="password" placeholder="Password" name="password" 
+                                        onChange={this.valueChange} value={password} autoComplete="off" required/>
                                     </Form.Group>
 
-                                    <Button size="sm" id="submitButton" variant="primary" onClick={this.showAlert}>
+                                    <Button size="sm" id="submitButton" variant="primary" type="submit">
                                         LOGIN
                                     </Button>
                                 </Form>

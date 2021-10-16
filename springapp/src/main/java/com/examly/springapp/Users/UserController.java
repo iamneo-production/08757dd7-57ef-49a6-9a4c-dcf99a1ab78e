@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "https://8081-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
