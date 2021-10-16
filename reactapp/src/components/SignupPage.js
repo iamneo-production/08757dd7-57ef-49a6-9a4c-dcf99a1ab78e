@@ -8,109 +8,76 @@ class SignupPage extends Component{
         super(props);
         this.state = {
             show: false,
-            message: null
+            message: "",
+            alertVariant: "",
+            email: "",
+            username: "",
+            mobilenumber: "",
+            password: "",
+            confirmpassword: ""
         };
     }
 
+
+    createUser = (event) => {
+        const User = {
+            email: this.state.email,
+            username: this.state.username,
+            mobilenumber: this.state.mobilenumber,
+            password: this.state.password,
+            confirmpassword: this.state.confirmpassword
+        }
+        event.preventDefault();
+        if(!this.showAlert()){
+            return;
+        }
+        else{
+            console.log(User);
+            this.setState({
+                show: true,
+                message: "Account Created Successfully!",
+                alertVariant: "success"
+            });
+        }
+    }
+
+    valueChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
     showAlert = () => {
-        var emailID = document.getElementById("email").value;
-        var username = document.getElementById("username").value;
-        var mobileNumber = document.getElementById("mobilenumber").value;
-        var password = document.getElementById("password").value;
-        var confirmPassword = document.getElementById("confirmpassword").value;
-
-        // Null Check
-        if(emailID === ""){
-            this.setState({
-                show: true,
-                message: "Email cannot be empty"
-            });
-            document.signupForm.email.focus();
-            return;
-        }
-        else if(username === ""){
-            this.setState({
-                show: true,
-                message: "Username cannot be empty"
-            });
-            document.signupForm.username.focus();
-            return;
-        }
-        else if(mobileNumber === ""){
-            this.setState({
-                show: true,
-                message: "Mobile number cannot be empty"
-            });
-            document.signupForm.mobilenumber.focus();
-            return;
-        }
-        else if(password === ""){
-            this.setState({
-                show: true,
-                message: "Password cannot be empty"
-            });
-            document.signupForm.password.focus();
-            return;
-        }
-        else if(confirmPassword === ""){
-            this.setState({
-                show: true,
-                message: "Confirm Password cannot be empty"
-            });
-            document.signupForm.confirmpassword.focus();
-            return;
-        }
-
-        // Email Validaition
-        var mailFormat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-        if(!emailID.match(mailFormat))
-        {
-            this.setState({
-                show: true,
-                message: "Enter valid email"
-            });
-            document.signupForm.email.focus();
-            return;
-        }
-
         // Username Validation
         var usernameFormat = /^[a-zA-Z0-9]+$/;
-        if(!username.match(usernameFormat))
+        if(!this.state.username.match(usernameFormat))
         {
             this.setState({
                 show: true,
-                message: "Enter valid username"
+                message: "Enter valid username",
+                alertVariant: "danger"
             });
             document.signupForm.username.focus();
-            return;
-        }
-
-        // Mobile Number Validation
-        var mobileFormat = /^[1-9]{1}[0-9]{9}$/;
-        if(!mobileNumber.match(mobileFormat))
-        {
-            this.setState({
-                show: true,
-                message: "Enter valid mobile number"
-            });
-            document.signupForm.mobilenumber.focus();
-            return;
+            return false;
         }
 
         // Password Validation
-        if(password !== confirmPassword){
+        if(this.state.password !== this.state.confirmpassword){
             this.setState({
                 show: true,
-                message: "Enter same password"
+                message: "Password must be same",
+                alertVariant: "danger"
             });
             document.signupForm.password.focus();
             document.signupForm.confirmpassword.focus();
-            return;
+            return false;
         }
-
+        return true;
     }
 
     render(){
+        const {email, username, mobilenumber, password, confirmpassword} = this.state;
+
         return(
             <div className="container mt-4 mb-5">
                 <Row>
@@ -119,7 +86,7 @@ class SignupPage extends Component{
 
                         {this.state.show?
                             // <Alert variant="danger">{this.state.message}</Alert>
-                            <Alert variant="danger" onClose={() => this.setState({show: false})} dismissible>
+                            <Alert variant={this.state.alertVariant} onClose={() => this.setState({show: false, alertVariant: "danger"})} dismissible>
                                     {this.state.message}
                             </Alert>
                         :null}
@@ -127,33 +94,38 @@ class SignupPage extends Component{
                         <Card id="signupBox">
                             <Card.Header><b>SIGN UP</b></Card.Header>
                             <Card.Body>
-                                <Form name="signupForm">
+                                <Form name="signupForm" onSubmit={this.createUser}>
                                     <Form.Group className="mb-3" controlId="email">
                                         <Form.Label>Email address</Form.Label>
-                                        <Form.Control type="email" placeholder="Enter email" required/>
+                                        <Form.Control type="email" placeholder="Enter email" name="email" 
+                                        onChange={this.valueChange} value={email} autoComplete="off" required/>
                                     </Form.Group>
 
                                     <Form.Group className="mb-3" controlId="username">
                                         <Form.Label>Username</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter username" required/>
+                                        <Form.Control type="text" placeholder="Enter username" name="username" 
+                                        onChange={this.valueChange} value={username} autoComplete="off" required/>
                                     </Form.Group>
 
                                     <Form.Group className="mb-3" controlId="mobilenumber">
                                         <Form.Label>Mobile Number</Form.Label>
-                                        <Form.Control type="phone" placeholder="Enter moblie number" required pattern="[0-9]{10}"/>
+                                        <Form.Control type="phone" placeholder="Enter moblie number" name="mobilenumber" 
+                                        onChange={this.valueChange} value={mobilenumber} autoComplete="off" required pattern="[0-9]{10}"/>
                                     </Form.Group>
 
                                     <Form.Group className="mb-3" controlId="password">
                                         <Form.Label>Password</Form.Label>
-                                        <Form.Control type="password" placeholder="Password" required/>
+                                        <Form.Control type="password" placeholder="Password" name="password" 
+                                        onChange={this.valueChange} value={password} autoComplete="off" required/>
                                     </Form.Group>
 
                                     <Form.Group className="mb-3" controlId="confirmpassword">
                                         <Form.Label>Confirm Password</Form.Label>
-                                        <Form.Control type="password" placeholder="Confirm Password" required/>
+                                        <Form.Control type="password" placeholder="Confirm Password" name="confirmpassword" 
+                                        onChange={this.valueChange} value={confirmpassword} autoComplete="off" required/>
                                     </Form.Group>
 
-                                    <Button size="sm" id="submitButton" variant="primary" onClick={this.showAlert}>
+                                    <Button size="sm" id="submitButton" variant="primary" type="submit">
                                         SIGN UP
                                     </Button>
                                 </Form>
