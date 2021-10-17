@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import {Card, Form , Button, Col, Row, Alert} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from "axios";
+import NavigationBar from "./NavigationBar";
+import Footer from "./Footer";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faUserPlus} from '@fortawesome/free-solid-svg-icons'
+
 
 class SignupPage extends Component{
     constructor(props){
@@ -90,65 +95,67 @@ class SignupPage extends Component{
         const {email, username, mobilenumber, password, confirmpassword} = this.state;
 
         return(
-            <div className="container mt-4 mb-5">
-                <Row>
-                    <Col lg={3}></Col>
-                    <Col lg={6}>
+            <div>
+                <NavigationBar/>
+                <div className="container mt-4 mb-5">
+                    <Row>
+                        <Col lg={3}></Col>
+                        <Col lg={6}>
 
-                        {this.state.show?
-                            // <Alert variant="danger">{this.state.message}</Alert>
-                            <Alert variant={this.state.alertVariant} onClose={() => this.setState({show: false, alertVariant: "danger"})} dismissible>
-                                    {this.state.message}
-                            </Alert>
-                        :null}
+                            {this.state.show?
+                                <Alert variant={this.state.alertVariant} onClose={() => this.setState({show: false, alertVariant: "danger"})} dismissible>
+                                        {this.state.message}
+                                </Alert>
+                            :null}
 
-                        <Card id="signupBox">
-                            <Card.Header><b>SIGN UP</b></Card.Header>
-                            <Card.Body>
-                                <Form name="signupForm" onSubmit={this.createUser}>
-                                    <Form.Group className="mb-3" controlId="email">
-                                        <Form.Label>Email address</Form.Label>
-                                        <Form.Control type="email" placeholder="Enter email" name="email" 
-                                        onChange={this.valueChange} value={email} autoComplete="off" required/>
-                                    </Form.Group>
+                            <Card id="signupBox">
+                                <Card.Header><b>SIGN UP</b></Card.Header>
+                                <Card.Body>
+                                    <Form name="signupForm" onSubmit={this.createUser}>
+                                        <Form.Group className="mb-3" controlId="email">
+                                            <Form.Label>Email address</Form.Label>
+                                            <Form.Control type="email" placeholder="Enter email" name="email" 
+                                            onChange={this.valueChange} value={email} autoComplete="off" required/>
+                                        </Form.Group>
 
-                                    <Form.Group className="mb-3" controlId="username">
-                                        <Form.Label>Username</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter username" name="username" 
-                                        onChange={this.valueChange} value={username} autoComplete="off" required/>
-                                    </Form.Group>
+                                        <Form.Group className="mb-3" controlId="username">
+                                            <Form.Label>Username</Form.Label>
+                                            <Form.Control type="text" placeholder="Enter username" name="username" 
+                                            onChange={this.valueChange} value={username} autoComplete="off" required/>
+                                        </Form.Group>
 
-                                    <Form.Group className="mb-3" controlId="mobilenumber">
-                                        <Form.Label>Mobile Number</Form.Label>
-                                        <Form.Control type="phone" placeholder="Enter moblie number" name="mobilenumber" 
-                                        onChange={this.valueChange} value={mobilenumber} autoComplete="off" required pattern="[0-9]{10}"/>
-                                    </Form.Group>
+                                        <Form.Group className="mb-3" controlId="mobilenumber">
+                                            <Form.Label>Mobile Number</Form.Label>
+                                            <Form.Control type="phone" placeholder="Enter moblie number" name="mobilenumber" 
+                                            onChange={this.valueChange} value={mobilenumber} autoComplete="off" required pattern="[0-9]{10}"/>
+                                        </Form.Group>
 
-                                    <Form.Group className="mb-3" controlId="password">
-                                        <Form.Label>Password</Form.Label>
-                                        <Form.Control type="password" placeholder="Password" name="password" 
-                                        onChange={this.valueChange} value={password} autoComplete="off" required/>
-                                    </Form.Group>
+                                        <Form.Group className="mb-3" controlId="password">
+                                            <Form.Label>Password</Form.Label>
+                                            <Form.Control type="password" placeholder="Password" name="password" 
+                                            onChange={this.valueChange} value={password} autoComplete="off" required/>
+                                        </Form.Group>
 
-                                    <Form.Group className="mb-3" controlId="confirmpassword">
-                                        <Form.Label>Confirm Password</Form.Label>
-                                        <Form.Control type="password" placeholder="Confirm Password" name="confirmpassword" 
-                                        onChange={this.valueChange} value={confirmpassword} autoComplete="off" required/>
-                                    </Form.Group>
+                                        <Form.Group className="mb-3" controlId="confirmpassword">
+                                            <Form.Label>Confirm Password</Form.Label>
+                                            <Form.Control type="password" placeholder="Confirm Password" name="confirmpassword" 
+                                            onChange={this.valueChange} value={confirmpassword} autoComplete="off" required/>
+                                        </Form.Group>
 
-                                    <Button size="sm" id="submitButton" variant="primary" type="submit">
-                                        SIGN UP
-                                    </Button>
-                                </Form>
-                            </Card.Body>
-                            <Card.Footer>
-                                <small>Already a member? <Link to={"login"} id="signinLink"> click here</Link></small>
-                            </Card.Footer>
-                        </Card>
-                    </Col>
-                    <Col lg={3}></Col>
-                </Row>
-                
+                                        <Button size="sm" id="submitButton" variant="primary" type="submit">
+                                            <FontAwesomeIcon icon={faUserPlus} /><b> SIGN UP</b>
+                                        </Button>
+                                    </Form>
+                                </Card.Body>
+                                <Card.Footer>
+                                    <small>Already a member? <Link to={"login"} id="signinLink"> click here</Link></small>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                        <Col lg={3}></Col>
+                    </Row>
+                </div>
+                <Footer/>
             </div>
         );
     }

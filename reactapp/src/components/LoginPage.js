@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import {Card, Form , Button, Col, Row, Alert} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from "axios";
+import NavigationBar from "./NavigationBar";
+import Footer from "./Footer";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faSignInAlt} from '@fortawesome/free-solid-svg-icons'
 
 class LoginPage extends Component{
 
@@ -36,10 +40,17 @@ class LoginPage extends Component{
             axios.post("https://8080-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/login", UserData)
             .then(response => {
                 if(response.data){
-                    this.setState({
-                        show: true,
-                        message: "Login successfull"
-                    });
+                    if(this.state.email === "admin"){
+                        localStorage.setItem("email", this.state.email);
+                        this.props.history.push("/admin");
+                    }
+                    else{
+                        this.setState({
+                            show: true,
+                            message: "Login successfull",   
+                        });
+                        localStorage.setItem("email", this.state.email);
+                    }
                 }
                 else{
                     this.setState({
@@ -87,47 +98,49 @@ class LoginPage extends Component{
         const {email, password} = this.state;
 
         return(
-            <div className="container mt-5 mb-5">
-                <Row>
-                    <Col lg={3}></Col>
-                    <Col lg={6}>
-                        
-                        {this.state.show?
-                        // <Alert variant="danger">{this.state.message}</Alert>
-                        <Alert variant="danger" onClose={() => this.setState({show: false})} dismissible>
-                                {this.state.message}
-                        </Alert>
-                        :null}
+            <div>
+                <NavigationBar/>
+                <div className="container mt-5 mb-5">
+                    <Row>
+                        <Col lg={3}></Col>
+                        <Col lg={6}>
+                            
+                            {this.state.show?
+                            <Alert variant="danger" onClose={() => this.setState({show: false})} dismissible>
+                                    {this.state.message}
+                            </Alert>
+                            :null}
 
-                        <Card id="loginBox">
-                            <Card.Header><b>LOGIN</b></Card.Header>
-                            <Card.Body>
-                                <Form name="loginForm" onSubmit={this.authenticateUser}>
-                                    <Form.Group className="mb-3" controlId="email">
-                                        <Form.Label>Email address</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter email" name="email" 
-                                        onChange={this.valueChange} value={email} autoComplete="off" required/>
-                                    </Form.Group>
+                            <Card id="loginBox">
+                                <Card.Header><b>LOGIN</b></Card.Header>
+                                <Card.Body>
+                                    <Form name="loginForm" onSubmit={this.authenticateUser}>
+                                        <Form.Group className="mb-3" controlId="email">
+                                            <Form.Label>Email address</Form.Label>
+                                            <Form.Control type="text" placeholder="Enter email" name="email" 
+                                            onChange={this.valueChange} value={email} autoComplete="off" required/>
+                                        </Form.Group>
 
-                                    <Form.Group className="mb-3" controlId="password">
-                                        <Form.Label>Password</Form.Label>
-                                        <Form.Control type="password" placeholder="Password" name="password" 
-                                        onChange={this.valueChange} value={password} autoComplete="off" required/>
-                                    </Form.Group>
+                                        <Form.Group className="mb-3" controlId="password">
+                                            <Form.Label>Password</Form.Label>
+                                            <Form.Control type="password" placeholder="Password" name="password" 
+                                            onChange={this.valueChange} value={password} autoComplete="off" required/>
+                                        </Form.Group>
 
-                                    <Button size="sm" id="submitButton" variant="primary" type="submit">
-                                        LOGIN
-                                    </Button>
-                                </Form>
-                            </Card.Body>
-                            <Card.Footer>
-                                <small>New user? <Link to={"signup"} id="signupLink"> click here</Link></small>
-                            </Card.Footer>
-                        </Card>
-                    </Col>
-                    <Col lg={3}></Col>
-                </Row>
-                
+                                        <Button size="sm" id="submitButton" variant="primary" type="submit">
+                                            <FontAwesomeIcon icon={faSignInAlt} /><b> LOGIN</b>
+                                        </Button>
+                                    </Form>
+                                </Card.Body>
+                                <Card.Footer>
+                                    <small>New user? <Link to={"signup"} id="signupLink"> click here</Link></small>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                        <Col lg={3}></Col>
+                    </Row>
+                </div>
+                <Footer/>
             </div>
         );
     }

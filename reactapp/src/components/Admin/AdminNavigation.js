@@ -1,13 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import {Navbar, Nav, Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faSignInAlt, faUserPlus} from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
-class NavigationBar extends Component{
+
+class AdminNavigation extends Component{
+
+    userLogout = () =>{
+        localStorage.removeItem("email");
+        this.props.history.push("/login");
+    }
+
     render(){
         return (
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" id="adminNavbar">
                 <Container>
                     <Link to={"/login"} className="navbar-brand">
                         <img src="https://cdn.freelogovectors.net/svg07/apple_music_logo.svg" width="25px" height="25px" alt="" /> Instrument Delight
@@ -15,12 +22,11 @@ class NavigationBar extends Component{
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            {/* <Nav.Link href="#features">Features</Nav.Link>
-                            <Nav.Link href="#pricing">Pricing</Nav.Link> */}
+                            <Link to={"/admin"} className="nav-link" id="adminProductButton">Product</Link>
+                            <Link to={"/admin/orders"} className="nav-link" id="adminOrderButton">Orders</Link>
                         </Nav>
                         <Nav>
-                            <Link to={"/login"} className="nav-link"><FontAwesomeIcon icon={faSignInAlt} /> Login</Link>
-                            <Link to={"/signup"} className="nav-link"><FontAwesomeIcon icon={faUserPlus} /> Signup</Link>
+                            <Nav.Link id="logoutButton" onClick={this.userLogout}><FontAwesomeIcon icon={faSignOutAlt}/> Logout</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -29,4 +35,4 @@ class NavigationBar extends Component{
     }
 }
 
-export default NavigationBar
+export default AdminNavigation
