@@ -19,7 +19,7 @@ class AdminProducts extends Component{
 
     // API Call (Get All Products)
     componentDidMount(){
-        axios.get("http://localhost:8080/admin/getProducts")
+        axios.get("https://8080-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/admin/getProducts")
         .then(response => response.data)
         .then((data) => {
             this.setState({
@@ -32,7 +32,7 @@ class AdminProducts extends Component{
     deleteProduct = (productId) =>{
         var decision = window.confirm("Do you really want to delete this product?");
         if(decision){
-            axios.get("http://localhost:8080/admin/delete/" + productId)
+            axios.get("https://8080-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/admin/delete/" + productId)
             .then(response => {
                 if(response.data !== null){
                     // Removing deleted row from table

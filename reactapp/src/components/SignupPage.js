@@ -37,7 +37,7 @@ class SignupPage extends Component{
             return;
         }
         else{
-            axios.post("http://localhost:8080/signup", User)
+            axios.post("https://8080-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/signup", User)
             .then(response => {
                 if(response.data){
                     this.setState({

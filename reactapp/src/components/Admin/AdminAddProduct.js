@@ -35,7 +35,7 @@ class AdminAddProduct extends Component {
             quantity: this.state.instrumentQuantity
         }
         
-        axios.post("http://localhost:8080/admin/addProduct", Instrument)
+        axios.post("https://8080-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/admin/addProduct", Instrument)
         .then(response => {
             if(response.data === "Product added"){
                 this.setState({
@@ -67,7 +67,7 @@ class AdminAddProduct extends Component {
             description: this.state.instrumentDescription,
             quantity: this.state.instrumentQuantity
         }
-        axios.put("http://localhost:8080/admin/productEdit", Instrument)
+        axios.put("https://8080-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/admin/productEdit", Instrument)
         .then(response => {
             if(response.data){
                 alert("Product updated successfully!");
@@ -85,7 +85,7 @@ class AdminAddProduct extends Component {
     componentDidMount(){
         const productId = +this.props.match.params.productId;
         if(productId){
-            axios.get("http://localhost:8080/admin/productEdit/" + productId)
+            axios.get("https://8080-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/admin/productEdit/" + productId)
             .then(response => {
                 this.setState({
                     productId: response.data.productId,
