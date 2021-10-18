@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Users")
-public class Users {
+public class UserModel {
 
     @Id
     private String email;
@@ -14,18 +14,25 @@ public class Users {
     private String username;
     private String mobilenumber;
     private String password;
+    private boolean active;
+    private String role;
+    
 
-    public Users() {
+   
+    public UserModel() {
 
     }
 
-    public Users(String email, String username, String mobilenumber, String password) {
+    public UserModel(String email, String username, String mobilenumber, String password, boolean active, String role) {
         super();
         this.email = email;
         this.username = username;
         this.mobilenumber = mobilenumber;
         this.password = password;
+        this.active = active;
+        this.role = role;
     }
+
 
     public String getEmail() {
         return email;
@@ -50,7 +57,7 @@ public class Users {
     public void setMobilenumber(String mobilenumber) {
         this.mobilenumber = mobilenumber;
     }
-    
+
     public String getPassword() {
         return password;
     }
@@ -58,5 +65,21 @@ public class Users {
     public void setPassword(String password) {
         this.password = password;
     }
-}
+    
+    public boolean isActive() {
+        return active;
+    }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+}

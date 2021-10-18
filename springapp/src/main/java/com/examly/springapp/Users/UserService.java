@@ -12,13 +12,13 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<Users> getAllUsers(){
-        List<Users> users = new ArrayList<>();
+    public List<UserModel> getAllUsers(){
+        List<UserModel> users = new ArrayList<>();
         userRepository.findAll().forEach(users::add);
         return users;
     }
 
-    public boolean addUser(Users user){
+    public boolean addUser(UserModel user){
         if(userRepository.findById(user.getEmail()).isEmpty()){
             userRepository.save(user);
             return true;
@@ -26,9 +26,9 @@ public class UserService {
         return false;
     }
 
-    public boolean findUser(Users user){
+    public boolean findUser(UserModel user){
         if(!userRepository.findById(user.getEmail()).isEmpty()){
-            Users dataUser = userRepository.findById(user.getEmail()).get();
+            UserModel dataUser = userRepository.findById(user.getEmail()).get();
             String username = dataUser.getEmail();
             String password = dataUser.getPassword();
             return username.equals(user.getEmail()) && password.equals(user.getPassword());         

@@ -37,7 +37,7 @@ class SignupPage extends Component{
             return;
         }
         else{
-            axios.post("https://8080-bdeebbfbfaacaaedbabffdcbfffeebeffbefa.examlyiopb.examly.io/signup", User)
+            axios.post("http://localhost:8080/signup", User)
             .then(response => {
                 if(response.data){
                     this.setState({
@@ -97,10 +97,10 @@ class SignupPage extends Component{
         return(
             <div>
                 <NavigationBar/>
-                <div className="container mt-4 mb-5">
+                <div className="container mt-5 mb-5">
                     <Row>
-                        <Col lg={3}></Col>
-                        <Col lg={6}>
+                        <Col lg={4}></Col>
+                        <Col lg={4}>
 
                             {this.state.show?
                                 <Alert variant={this.state.alertVariant} onClose={() => this.setState({show: false, alertVariant: "danger"})} dismissible>
@@ -113,36 +113,31 @@ class SignupPage extends Component{
                                 <Card.Body>
                                     <Form name="signupForm" onSubmit={this.createUser}>
                                         <Form.Group className="mb-3" controlId="email">
-                                            <Form.Label>Email address</Form.Label>
-                                            <Form.Control type="email" placeholder="Enter email" name="email" 
+                                            <Form.Control type="email" placeholder="Enter Email" name="email" 
                                             onChange={this.valueChange} value={email} autoComplete="off" required/>
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="username">
-                                            <Form.Label>Username</Form.Label>
-                                            <Form.Control type="text" placeholder="Enter username" name="username" 
+                                            <Form.Control type="text" placeholder="Enter Username" name="username" 
                                             onChange={this.valueChange} value={username} autoComplete="off" required/>
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="mobilenumber">
-                                            <Form.Label>Mobile Number</Form.Label>
-                                            <Form.Control type="phone" placeholder="Enter moblie number" name="mobilenumber" 
+                                            <Form.Control type="phone" placeholder="Enter Moblie Number" name="mobilenumber" 
                                             onChange={this.valueChange} value={mobilenumber} autoComplete="off" required pattern="[0-9]{10}"/>
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="password">
-                                            <Form.Label>Password</Form.Label>
-                                            <Form.Control type="password" placeholder="Password" name="password" 
+                                            <Form.Control type="password" placeholder="Enter Password" name="password" 
                                             onChange={this.valueChange} value={password} autoComplete="off" required/>
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="confirmpassword">
-                                            <Form.Label>Confirm Password</Form.Label>
                                             <Form.Control type="password" placeholder="Confirm Password" name="confirmpassword" 
                                             onChange={this.valueChange} value={confirmpassword} autoComplete="off" required/>
                                         </Form.Group>
 
-                                        <Button size="sm" id="submitButton" variant="primary" type="submit">
+                                        <Button size="sm" id="submitButton" variant="outline-primary" type="submit">
                                             <FontAwesomeIcon icon={faUserPlus} /><b> SIGN UP</b>
                                         </Button>
                                     </Form>
@@ -152,7 +147,7 @@ class SignupPage extends Component{
                                 </Card.Footer>
                             </Card>
                         </Col>
-                        <Col lg={3}></Col>
+                        <Col lg={4}></Col>
                     </Row>
                 </div>
                 <Footer/>
