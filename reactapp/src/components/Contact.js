@@ -4,46 +4,45 @@ import {Route,Switch,Redirect,NavLink} from "react-router-dom";
 import ScriptTag from 'react-script-tag';
 import {Helmet} from "react-helmet";
 
-
 class Contact extends Component{
   render(){
     return (
       <>
-      <div className="contactname">
-      <div className="containercontact">
+      <div className="contactnameu">
+      <div className="containercontactu">
         <h1 className="contactheading">Connect with Us</h1>
         <p className="headingdesc">We would love to respond to your queries and help you succeed. <br/>Feel
         free to get in touch with us.</p>
-        <div className="box">
-          <div className="contact-left">
+        <div className="boxu">
+          <div className="contact-leftu">
             <h3>Send your request</h3>
             <form  method="post">
-              <div className="input-row">
-                <div className="input-group">
+              <div className="input-rowu">
+                <div className="input-groupu">
                   <label for="name">Name:</label>
-                  <input className="contactinput" type="text" id="name" name='name' placeholder="Aman Arya" value="" required/>
+                  <input className="contactinputu" type="text" id="name" name='name' placeholder="Aman Arya" value="" required/>
                 </div>
-                <div className="input-group">
+                <div className="input-groupu">
                   <label for="phone">Phone:</label>
-                  <input className="contactinput" type="text"  id="phone" name='phone' placeholder="+91 8954840635" value="" required/>
+                  <input className="contactinputu" type="text"  id="phone" name='phone' placeholder="+91 8954840635" value="" required/>
                 </div>
               </div>
-              <div className="input-row">
-                <div className="input-group">
+              <div className="input-rowu">
+                <div className="input-groupu">
                   <label for="email">Email:</label>
-                    <input className="contactinput" type="email"  id="email" name = 'email' placeholder="contactus@example.com" value="" required/>
+                    <input className="contactinputu" type="email"  id="email" name = 'email' placeholder="contactus@example.com" value="" required/>
                 </div>
-                <div className="input-group">
+                <div className="input-groupu">
                   <label for="subject">Subject:</label>
-                  <input className="contactinput" type="text"  id="subject" name = 'subject' placeholder="Product demo" value="" required/>
+                  <input className="contactinputu" type="text"  id="subject" name = 'subject' placeholder="Product demo" value="" required/>
                 </div>
               </div>
               <label for="message">Message</label>
               <textarea  rows="8" cols="80" id="message" name = 'message' placeholder="Your Message"></textarea>
-              <button className="sendbutton" type="submit" name="submit">Send</button>
+              <button className="sendbuttonu" type="submit" name="submit">Send</button>
             </form>
           </div>
-          <div className="contact-right">
+          <div className="contact-rightu">
             <h3>Reach Us</h3>
             <table>
               <tr>
@@ -72,3 +71,8 @@ class Contact extends Component{
 
 
 export default Contact;
+
+
+  
+               
+         

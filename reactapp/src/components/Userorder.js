@@ -8,7 +8,7 @@ class Userorder extends Component{
   render(){
     return (
       <>
-      <div className="small-container  cart-page">
+      <div className="small-containeru  cart-pageu">
       <table className="carttable">
         <thead>
         <tr>
