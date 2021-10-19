@@ -17,17 +17,17 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users")
-    public List<UserModel> getAllUsers(){
+    public List<UserModel> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @PostMapping("/signup")
-    public boolean addUser(@RequestBody UserModel user){
+    public boolean addUser(@RequestBody UserModel user) {
         return userService.addUser(user);
     }
 
     @PostMapping("/login")
-    public boolean findUser(@RequestBody UserModel user){
+    public boolean findUser(@RequestBody UserModel user) {
         return userService.findUser(user);
     }
 }

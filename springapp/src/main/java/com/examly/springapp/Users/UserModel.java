@@ -5,20 +5,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Users")
+@Table(name = "Users")
 public class UserModel {
 
     @Id
     private String email;
-    
+
     private String username;
     private String mobilenumber;
     private String password;
     private boolean active;
     private String role;
-    
 
-   
     public UserModel() {
 
     }
@@ -32,7 +30,6 @@ public class UserModel {
         this.active = active;
         this.role = role;
     }
-
 
     public String getEmail() {
         return email;
@@ -61,11 +58,11 @@ public class UserModel {
     public String getPassword() {
         return password;
     }
-    
+
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public boolean isActive() {
         return active;
     }

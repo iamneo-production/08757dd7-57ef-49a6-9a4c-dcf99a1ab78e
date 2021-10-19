@@ -7,17 +7,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="products")
+@Table(name = "products")
 public class ProductModel {
     @Id
     @GeneratedValue
     private long productId;
-    
+
     private String imageURL;
 
     @Column(unique = true, name = "productName")
     private String productName;
-    
+
     private String price;
     private String description;
     private String quantity;
@@ -64,7 +64,7 @@ public class ProductModel {
     public String getPrice() {
         return price;
     }
-    
+
     public void setPrice(String price) {
         this.price = price;
     }
@@ -80,9 +80,8 @@ public class ProductModel {
     public String getQuantity() {
         return quantity;
     }
-    
+
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 }
-    
