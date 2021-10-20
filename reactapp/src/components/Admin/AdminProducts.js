@@ -62,7 +62,7 @@ class AdminProducts extends Component {
                     <Link className="mb-3 btn btn-outline-primary btn-md" to={"/addProduct"}><FontAwesomeIcon icon={faCartPlus} /><b> ADD PRODUCTS</b></Link>
                     <Row>
                         <Col lg={12}>
-                            <Table bordered hover id="adminDashboard">
+                            <Table hover id="adminDashboard">
                                 <thead>
                                     <tr>
                                         <th>Images</th>

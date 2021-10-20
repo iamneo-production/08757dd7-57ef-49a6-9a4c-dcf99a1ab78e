@@ -123,7 +123,7 @@ class UserHomePage extends Component {
                     </div>
                 </div>
 
-                <div className="testimonialu">
+                {/* <div className="testimonialu">
                     <div className="small-containeru">
                         <div className="rowu">
                             <div className="col-3u">
@@ -149,7 +149,7 @@ class UserHomePage extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
 
                 {/* <div className="brands">
