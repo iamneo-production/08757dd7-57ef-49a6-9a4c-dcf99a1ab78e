@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AdminAddProduct from './components/Admin/AdminAddProduct';
 import UserHomePage from './components/User/UserHomePage';
 import UserProductDetails from './components/User/UserProductDetails';
+import UserOrder from './components/User/UserOrder';
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/admin/editProduct/:productId" exact component={AdminAddProduct} />
         <Route path="/home" exact component={UserHomePage} />
         <Route path="/productDetail/:productId" exact component={UserProductDetails} />
+        <Route path="/orders" exact component={UserOrder} />
       </Switch>
     </Router>
   );

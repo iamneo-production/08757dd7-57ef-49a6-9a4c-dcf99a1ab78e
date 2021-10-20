@@ -108,7 +108,7 @@ class LoginPage extends Component {
                                 </Alert>
                                 : null}
 
-                            <Card id="loginBox">
+                            <Card id="loginBox" className="shadowBox">
                                 <Card.Header><b>LOGIN</b></Card.Header>
                                 <Card.Body>
                                     <Form name="loginForm" onSubmit={this.authenticateUser}>

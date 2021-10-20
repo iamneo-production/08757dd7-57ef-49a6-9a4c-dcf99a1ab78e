@@ -40,21 +40,21 @@ body{
 
 
 
-.navbaru{
+/* .navbaru{
   position: fixed;
   top: 0;
   left:10px;
   width: 98%;
-  display:flex;
-  align-items: center;/* window k beach m krne k liye  vertically*/
-  padding: 20px;/* all side se kitna niche hoga */
+  display:flex; */
+  /* align-items: center;window k beach m krne k liye  vertically */
+  /* padding: 20px;all side se kitna niche hoga */
   /* background-color: yellow; */
 /* border-radius is for sharp edge */
 
-}
+/* } */
 
 
-nav{
+/* nav{
   flex: 1;
   text-align: right;
 }
@@ -69,7 +69,7 @@ nav ul li{
   display: inline-block;
   margin-right: 20px;
 
-}
+} */
 
 
 .btnu a{
@@ -283,6 +283,10 @@ small{
 }
 
 .productItem{
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
+}
+
+.shadowBox{
   box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
 }
 
@@ -877,7 +881,7 @@ button:focus{
 
 
 /* ------------media query for menu---------- */
-@media only screen and (max-width:800px){
+/* @media only screen and (max-width:800px){
   nav ul{
     position: absolute;
     top: 70px;
@@ -910,7 +914,7 @@ button:focus{
     display: block;
     cursor: pointer;
   }
-}
+} */
 
 
 /* media query for less than 600 screen size */

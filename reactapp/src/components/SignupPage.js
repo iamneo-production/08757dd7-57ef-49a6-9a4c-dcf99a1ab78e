@@ -107,7 +107,7 @@ class SignupPage extends Component {
                                 </Alert>
                                 : null}
 
-                            <Card id="signupBox">
+                            <Card id="signupBox" className="shadowBox">
                                 <Card.Header><b>SIGN UP</b></Card.Header>
                                 <Card.Body>
                                     <Form name="signupForm" onSubmit={this.createUser}>
